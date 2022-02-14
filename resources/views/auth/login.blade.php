@@ -1,4 +1,5 @@
 @extends('layouts.head')
+
 @section('content')
-    <p>home</p>
+  <p>login</p>  
 @endsection
