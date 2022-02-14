@@ -7,10 +7,10 @@ use App\Http\Controllers\Controller;
 
 class LoginController extends Controller
 {
-      
+
     public function index()
     {
-        return dd('index');
+        return dd('login');
     }
 
     /////////////////////
