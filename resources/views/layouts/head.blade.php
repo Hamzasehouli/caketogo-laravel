@@ -18,18 +18,26 @@
           </li>
       </ul>
       <ul class="flex justify-between">
+          @if (Auth::check())
+          <li class="pr-3 last:pr-0">
+              <p>{{Auth::user()->name}}</p>
+          </li>
+          <li class="pr-3 last:pr-0">
+              <form method="post" action="#">
+                @method('DELETE')
+                <button type="submit" href="">Logout</button>    
+              </form>
+          </li>
+              
+          @else
+              
           <li class="pr-3 last:pr-0">
               <a href="{{route('register')}}">Register</a>   
           </li>
           <li class="pr-3 last:pr-0">
               <a href="{{route('login')}}">Login</a>  
           </li>
-          <li class="pr-3 last:pr-0">
-              <a href="">Hamza Sehouli</a>
-          </li>
-          <li class="pr-3 last:pr-0">
-              <a href="">Logout</a>    
-          </li>
+          @endif
       </ul>
     </nav>
     <main class="min-h-[100vh] mx-auto max-w-[1420px]">

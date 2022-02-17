@@ -5,6 +5,7 @@
     <form action="{{route('register')}}" method="post">
       @csrf
     <h1>Register</h1>
+    <p>{{session('status')}}</p>
     <div>
       <label for="name">
         Name
@@ -18,7 +19,7 @@
       <label for="email">
         email
       </label>
-      <input id="email" email="email" type="text" value="{{old('email')}}">
+      <input id="email" name="email" type="email" value="{{old('email')}}">
       @error('email')
           {{$message}}
       @enderror
@@ -27,8 +28,17 @@
       <label for="password">
         Password
       </label>
-      <input id="password" name="password" type="text" value="{{old('password')}}">
+      <input id="password" name="password" type="password" value="{{old('password')}}">
       @error('password')
+          {{$message}}
+      @enderror
+    </div>
+    <div>
+      <label for="password_confirmation">
+        Confirm Password
+      </label>
+      <input id="password_confirmation" name="password_confirmation" type="password" value="{{old('password_confirmation')}}">
+      @error('password_confirmation')
           {{$message}}
       @enderror
     </div>
