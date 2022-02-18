@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -32,4 +33,17 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
     Route::delete('/logout', [LogoutController::class, 'destroy'])->name('logout');
+});
+
+/////Admin
+
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+Route::get('/admin/register', [AdminController::class, 'register'])->name('admin.register');
+Route::post('/admin', [AdminController::class, 'login'])->name('admin.login');
+
+Route::middleware('auth')->group(function () {
+    Route::patch('/admin/update', [AdminController::class, 'update'])->name('admin.update');
+    Route::patch('/admin/reset-password', [AdminController::class, 'resetPassword'])->name('admin.resetpassword');
+    Route::patch('/admin/forget-password', [AdminController::class, 'resetPassword'])->name('admin.forgetpassword');
+    Route::patch('/admin/show', [AdminController::class, 'show'])->name('admin.show');
 });

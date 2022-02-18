@@ -20,7 +20,13 @@
       <ul class="flex justify-between">
           @if (Auth::check())
           <li class="pr-3 last:pr-0">
-              <p>{{Auth::user()->name}}</p>
+              <p>Hello {{Auth::user()->name}}</p>
+          </li>
+          <li class="pr-3 last:pr-0">
+              <a href="#">Profile</a>
+          </li>
+          <li class="pr-3 last:pr-0">
+              <a href="#">Cart</a>
           </li>
           <li class="pr-3 last:pr-0">
               <form method="post" action="{{route('logout')}}">
