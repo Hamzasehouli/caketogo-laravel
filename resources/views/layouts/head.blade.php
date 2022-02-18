@@ -18,18 +18,25 @@
           </li>
       </ul>
       <ul class="flex justify-between">
-          <li class="pr-3 last:pr-0">
-              <a href="{{route('register')}}">Register</a>   
-          </li>
-          <li class="pr-3 last:pr-0">
-              <a href="{{route('login')}}">Login</a>  
-          </li>
+          @if (Auth::check())
           <li class="pr-3 last:pr-0">
               <a href="">Hamza Sehouli</a>
           </li>
           <li class="pr-3 last:pr-0">
               <a href="">Logout</a>    
           </li>
+          
+              
+          @else
+              
+          <li class="pr-3 last:pr-0">
+              <a href="{{route('register')}}">Register</a>   
+          </li>
+          <li class="pr-3 last:pr-0">
+              <a href="{{route('login')}}">Login</a>  
+          </li>
+          @endif
+          
       </ul>
     </nav>
     <main class="min-h-[100vh] mx-auto max-w-[1420px]">
