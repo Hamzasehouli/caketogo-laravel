@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers\Auth;
 
-// use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['guest']);
+    }
 
     public function index()
     {
@@ -31,7 +34,12 @@ class RegisterController extends Controller
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
         ]);
-        Auth::attempt($validated);
-        return redirect()->route('home');
+
+        if (Auth::attempt($request->only('email', 'password'))) {
+            return redirect()->route('home');
+        } else {
+            return back()->with('status', 'Sign up has been failed');
+        }
+
     }
 }

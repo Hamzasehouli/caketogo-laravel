@@ -20,12 +20,15 @@
       <ul class="flex justify-between">
           @if (Auth::check())
           <li class="pr-3 last:pr-0">
-              <a href="">Hamza Sehouli</a>
+              <p>{{Auth::user()->name}}</p>
           </li>
           <li class="pr-3 last:pr-0">
-              <a href="">Logout</a>    
+              <form method="post" action="{{route('logout')}}">
+                @csrf
+                @method('DELETE')
+                <button type="submit" href="">Logout</button>    
+              </form>
           </li>
-          
               
           @else
               
@@ -36,7 +39,6 @@
               <a href="{{route('login')}}">Login</a>  
           </li>
           @endif
-          
       </ul>
     </nav>
     <main class="min-h-[100vh] mx-auto max-w-[1420px]">

@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['guest']);
+    }
 
     public function index()
     {
@@ -24,19 +28,22 @@ class LoginController extends Controller
             'password' => ['required', 'min:8', 'max:20'],
         ]);
 
-        $user = User::where('email', $request->email)->first();
+        $user = User::where('email', $request['email'])->first();
 
         if (!$user) {
-            return back();
+            return back()->with('status', 'No user found with this email');
         }
 
-        $isPasswordValid = Hash::check($request->password, $user['password']);
-
-        if (!$isPasswordValid) {
-            return back();
+        $isPasswordValidated = Hash::check($request->password, $user['password']);
+        if (!$isPasswordValidated) {
+            return back()->with('status', 'Password is incorrect');
         }
 
-        Auth::attempt($request->only('email', 'password'));
-        return redirect()->route('home');
+        if (Auth::attempt($request->only('email', 'password'))) {
+
+            return redirect()->route('home');
+        } else {
+            return back()->with('status', 'Invalid credentials');
+        }
     }
 }
