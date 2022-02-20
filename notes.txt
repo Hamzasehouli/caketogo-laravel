@@ -1,0 +1,170 @@
+to be covered:
+
+Auth
+Laravel-mix
+controllers
+routing
+route model binding
+database migrations
+models
+soft deleting
+laravel string helpers
+blade templates 
+blade components
+blade directives
+ORM elequent
+eloquent relationship types
+model factories 
+Authorization
+sending email
+validation
+eager loading
+pagination
+redirecting
+CSRF protection
+method spoofing
+middelwares
+artisan console
+dates and times
+collections 
+////////////////////////////////////////////////////
+
+to create a nested controller e.g auth\\RegisterController
+to reverse a migration we write $table->dropColumn and php artisan migrate:rollback
+
+////////////////////////////////////////////////////
+
+to write a path in laravel views we can either write /login or {{route('login')}} and attach name method to the route=> Route::post('/login', method)->name('login');
+
+
+///////////////////////////////////////////////////////////
+
+@crsf to play around the cross site request forgery;
+
+///////////////////////////////////////////////////////////
+
+in the $request validation method password=> 'required|confirmd'  laravel will look in the form for input with name="password_confirmation" and validate automaticaly the confirmed passwword;
+
+///////////////////////////////////////////////////////////
+
+Laravel has a very helpfull helper @error('email')
+<p>{{$message}}</p>
+@enderror
+
+///////////////////////////////////////////////////////
+
+to preserve the entered inputs, we do value="{{old('email')}}"
+
+////////////////////////////////////////////////////////
+
+to redirect in laravel
+return redirect('/home') or return redirect()->route('home');
+
+///////////////////////////////////////////////////////////////7
+
+
+to login the user if(Auth::attempt($validated){
+do something}
+else{
+return back()->with('status','message'); to return to the current page
+///////////////////////////////////////////////////////
+
+to render a status message in the login template
+we use session('status') that is normally sent from login controller
+
+/////////////////////////////////////////////////////////
+
+to logout it is better to use form to prevent CSRF attacks
+
+Auth::logout();
+return redirect()->route('home');
+
+////////////////////////////////////////////////////////////////
+
+to implement authorization i  laravel we have two ways
+
+either attach a MW to the rout or use public function __construct(){
+$this->middleware('auth or guest');
+}
+
+in the head of a controller
+
+/////////////////////////////////////////////////////////////////
+
+php artisan make:model --help to check the flags available for thsi command
+
+////////////////////////////////////////////////////////////////
+
+$table->timestamp gives us ceated_at and updated_at columns;
+
+////////////////////////////////////////////////////////////////
+
+to attach a table to an other for example a a user_id to a post table
+it is recomended to use $table->integer('user_id)->unsigned()->index();
+unigned to have only posotive number and the index to enhance data query speed
+OR
+
+$table->foreignId('user_id')->constrained()->onDelete('cascade');
+constrained means thats the user post tables is constrained to the user one, cascade means that if the user is deleted his posts will be deleted as well
+
+///////////////////////////////////////////////////////////////
+
+one to many relationship
+in the user Model public function posts(){
+$this->hasMany(Post::class);
+}
+
+we can create posts in the Auth::user()-posts()->create($request->only('body')) rather in the Post::create($request->only('body'))
+laravel return a collection rather a list of data
+collection has many poweful methods like count() and so on
+///////////////////////////////////////////////////////////////
+
+the reverse of hasMany is belongsTo(User::class);
+
+//////////////////////////////////////////////////////////////
+
+whene we want to access create_at or updated_at we get somthing call carbon which is a library used by php and laravel to format date
+
+to get for example 15 min ago we have access to a method from carbon wrapper called diffForHumans();
+
+//////////////////////////////////////////////////////////////77
+
+PAGINAGION in laravel
+
+$posts = Post::paginate(number of data per page );
+and in the template we have access to $post->links() to add pagination buttons;
+////////////////////////////////////////////////////////////////////
+
+Laravel has very helpuful feature called factory which is for database testing
+
+we add in the deffinition inn the post factory
+'body'=>$this->faker->sentence(39);
+
+and inn the tinker we run App\Model\Post::factory()->count(100)->create();
+//////////////////////////////////////////////////////////////////////////////
+
+
+to order the gotten data we use orderBy('created_at', 'desc') or latest()
+
+Post::latest()->get();
+
+///////////////////////////////////////////////////
+
+eager loading is a feature in Eloquent to minimize the data fetch just at one and get only the needed items
+
+Post::width('user', 'likes')->get();
+
+because in the Post model we have data relationship
+//////////////////////////////////////////////////////
+
+Blade components:
+
+php artisan make:component which gives us a Class and a blade template, we remove the class to make the cmp anonyms
+
+in the template where we wanna use the cmp we write: <x-nameofcmp :post="$post" > with some props;
+and in the cmp, we append in the head of the template the props,
+
+@props(['posts'=>$post]); 
+
+
+
