@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\ForgetPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,10 +33,13 @@ Route::post('/login', [LoginController::class, 'store'])->name('login');
 
 Route::get('/forget-password', [ForgetPasswordController::class, 'index'])->name('forget-password');
 Route::post('/forget-password', [ForgetPasswordController::class, 'store'])->name('forget-password');
-
 Route::get('/reset-password/{token}', [ForgetPasswordController::class, 'sendLink'])->name('password.reset');
-
 Route::post('/reset-password', [ForgetPasswordController::class, 'updatePassword'])->name('password.update');
+
+///Update data
+
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+Route::post('/update-data', [ProfileController::class, 'store'])->name('update.data');
 
 Route::get('/', function () {
     return view('welcome');

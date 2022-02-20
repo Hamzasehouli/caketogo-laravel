@@ -23,7 +23,7 @@
               <p>Hello {{Auth::user()->name}}</p>
           </li>
           <li class="pr-3 last:pr-0">
-              <a href="#">Profile</a>
+              <a href="{{route('profile')}}">Profile</a>
           </li>
           <li class="pr-3 last:pr-0">
               <a href="#">Cart</a>
