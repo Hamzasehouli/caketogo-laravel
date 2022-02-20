@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\ForgetPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -26,6 +27,15 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store'])->name('login');
+
+//Forget password
+
+Route::get('/forget-password', [ForgetPasswordController::class, 'index'])->name('forget-password');
+Route::post('/forget-password', [ForgetPasswordController::class, 'store'])->name('forget-password');
+
+Route::get('/reset-password/{token}', [ForgetPasswordController::class, 'sendLink'])->name('password.reset');
+
+Route::post('/reset-password', [ForgetPasswordController::class, 'updatePassword'])->name('password.update');
 
 Route::get('/', function () {
     return view('welcome');
