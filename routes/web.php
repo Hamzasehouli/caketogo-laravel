@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\UpdatePasswordController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,6 +41,9 @@ Route::post('/reset-password', [ForgetPasswordController::class, 'updatePassword
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 Route::post('/update-data', [ProfileController::class, 'store'])->name('update.data');
+
+Route::get('/update-password', [UpdatePasswordController::class, 'index'])->name('update-password');
+Route::post('/update-password', [UpdatePasswordController::class, 'store'])->name('update-password');
 
 Route::get('/', function () {
     return view('welcome');
