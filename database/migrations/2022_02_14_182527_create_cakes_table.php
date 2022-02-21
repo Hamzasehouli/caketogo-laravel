@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('title');
             $table->decimal('price');
             $table->text('description');
-            $table->string('allergens');
             $table->decimal('weight');
             $table->string('photo');
             $table->timestamps();

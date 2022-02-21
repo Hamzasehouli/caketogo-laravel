@@ -51,15 +51,17 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
     Route::delete('/logout', [LogoutController::class, 'destroy'])->name('logout');
+
+    ///Cake
+
+    Route::get('/cakes/add-cake', [CakeController::class, 'addCake'])->name('add.cake');
+    Route::post('/cakes', [CakeController::class, 'store']);
+    Route::patch('/cakes/{id}', [CakeController::class, 'destroy']);
+    Route::delete('/cakes/{id}', [CakeController::class, 'update']);
+
 });
 
 ////////////Cakes
 
-Route::get('/cakes', [CakeController::class, 'index'])->name('cake');
+Route::get('/cakes', [CakeController::class, 'index'])->name('cakes');
 Route::get('/cakes/{cake}', [CakeController::class, 'show']);
-
-Route::middleware('admin')->group(function () {
-    Route::post('/cakes', [CakeController::class, 'store']);
-    Route::patch('/cakes/{id}', [CakeController::class, 'destroy']);
-    Route::delete('/cakes/{id}', [CakeController::class, 'update']);
-});

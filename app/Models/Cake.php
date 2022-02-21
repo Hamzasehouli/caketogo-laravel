@@ -14,9 +14,8 @@ class Cake extends Model
     protected $fillable = [
         'title',
         'price',
-        'descritpion',
+        'description',
         'ingredients ',
-        'allergens',
         'weight',
         'photo',
     ];
