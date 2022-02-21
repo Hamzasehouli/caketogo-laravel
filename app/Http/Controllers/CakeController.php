@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cake;
 use Illuminate\Http\Request;
 
 class CakeController extends Controller
@@ -34,7 +35,15 @@ class CakeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'bail|required|string|max:255',
+            'price' => 'required|numeric',
+            'weight' => 'required|numeric',
+            'description' => 'required|string|max:255|min:20',
+            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        Cake::create($request->only('title', 'price', 'weight', 'description', 'photo'));
+        return redirect()->route('home');
     }
 
     /**
@@ -80,5 +89,10 @@ class CakeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function addCake()
+    {
+        return view('cake.create');
     }
 }
