@@ -32,6 +32,6 @@ class UpdatePasswordController extends Controller
             return back()->with('status', 'The current password is incorrect');
         }
         Auth::user()->update(['password' => Hash::make($request->password)]);
-        return back();
+        return back()->with('status', 'Password has been updated successfully');
     }
 }
