@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cake;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CakeController extends Controller
 {
@@ -22,19 +23,12 @@ class CakeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
-    }
+        if (Auth::user()->role !== 'admin') {
+            return redirect()->route('home')
+        }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
         $request->validate([
             'title' => 'bail|required|string|max:255',
             'price' => 'required|numeric',
@@ -44,6 +38,17 @@ class CakeController extends Controller
         ]);
         Cake::create($request->only('title', 'price', 'weight', 'description', 'photo'));
         return redirect()->route('home');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store()
+    {
+
     }
 
     /**
@@ -93,6 +98,10 @@ class CakeController extends Controller
 
     public function addCake()
     {
-        return view('cake.create');
+        if (Auth::user()->role === 'admin') {
+            return view('cake.create');
+        } else {
+            return redirect()->route('home');
+        }
     }
 }

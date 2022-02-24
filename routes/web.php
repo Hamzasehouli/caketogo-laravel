@@ -54,8 +54,8 @@ Route::middleware('auth')->group(function () {
 
     ///Cake
 
-    Route::get('/cakes/add-cake', [CakeController::class, 'addCake'])->name('add.cake');
-    Route::post('/cakes', [CakeController::class, 'store']);
+    Route::get('/admin/add-cake', [CakeController::class, 'addCake'])->name('add.cake');
+    Route::post('/cakes', [CakeController::class, 'create']);
     Route::patch('/cakes/{id}', [CakeController::class, 'destroy']);
     Route::delete('/cakes/{id}', [CakeController::class, 'update']);
 
