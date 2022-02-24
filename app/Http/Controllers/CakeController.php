@@ -100,11 +100,20 @@ class CakeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $cake)
     {
         if (!Gate::allows('update.cake')) {
             abort(403);
         }
+        $request->validate([
+            'title' => 'bail|string|max:255',
+            'price' => 'numeric',
+            'weight' => 'numeric',
+            'description' => 'string|max:255|min:20',
+            'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        $cake->update($request->all())
+        return back();
     }
 
     /**
@@ -113,11 +122,14 @@ class CakeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($cake)
     {
         if (!Gate::allows('destroy.cake')) {
             abort(403);
         }
+
+        $cake->delete();
+        return redirect()->route('home');
     }
 
     public function addCake()
