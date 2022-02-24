@@ -67,15 +67,21 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function updateView(Request $request, $id)
+    {
+        if (!Gate::allows('update.user.view')) {
+            abort(403);
+        }
+        return view('user.update');
+    }
     public function update(Request $request, $id)
     {
-        if (!Gate::allows('updateDataView.user')) {
+        if (!Gate::allows('update.user')) {
             abort(403);
         }
         $user = User::where('id', $id);
         $user->update($request->only());
     }
-   
 
     /**
      * Remove the specified resource from storage.

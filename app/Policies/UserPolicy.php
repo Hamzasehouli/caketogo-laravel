@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Auth\Access\Response;
 
 class UserPolicy
 {
@@ -15,9 +16,14 @@ class UserPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function viewAny(User $user)
+    public function getAllUsers(User $user)
     {
-        //
+        return $user->role === 'admin' ? Response::allow() : Response::deny('You are not allowed to perform this task');
+    }
+
+    public function getActives(User $user)
+    {
+        return $user->role === 'admin' ? Response::allow() : Response::deny('You are not allowed to perform this task');
     }
 
     /**
@@ -27,9 +33,9 @@ class UserPolicy
      * @param  \App\Models\User  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, User $model)
+    public function show(User $user, User $model)
     {
-        //
+        return $user->role === 'admin' ? Response::allow() : Response::deny('You are not allowed to perform this task');
     }
 
     /**
@@ -38,9 +44,9 @@ class UserPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user)
+    public function store(User $user)
     {
-        //
+        return $user->role === 'admin' ? Response::allow() : Response::deny('You are not allowed to perform this task');
     }
 
     /**
@@ -50,9 +56,13 @@ class UserPolicy
      * @param  \App\Models\User  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
+    public function updateView(User $user, User $model)
+    {
+        return $user->role === 'admin' ? Response::allow() : Response::deny('You are not allowed to perform this task');
+    }
     public function update(User $user, User $model)
     {
-        //
+        return $user->role === 'admin' ? Response::allow() : Response::deny('You are not allowed to perform this task');
     }
 
     /**
@@ -64,7 +74,7 @@ class UserPolicy
      */
     public function delete(User $user, User $model)
     {
-        //
+        return $user->role === 'admin' ? Response::allow() : Response::deny('You are not allowed to perform this task');
     }
 
     /**
@@ -74,20 +84,9 @@ class UserPolicy
      * @param  \App\Models\User  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, User $model)
+    public function deactivate(User $user, User $model)
     {
-        //
+        return $user->role === 'admin' ? Response::allow() : Response::deny('You are not allowed to perform this task');
     }
 
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\User  $model
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function forceDelete(User $user, User $model)
-    {
-        //
-    }
 }

@@ -62,9 +62,11 @@ Route::middleware('auth')->group(function () {
     ///User
 
     Route::get('admin/actives', [UserController::class, 'getActiveUsers'])->name('get.actives');
-    Route::get('admin/users', [UserController::class, 'getAllUsers'])->name('get.users');
+    Route::get('admin/allusers', [UserController::class, 'getAllUsers'])->name('get.users');
+    Route::get('admin/users', [UserController::class, 'addUserView'])->name('add.user.view');
     Route::post('admin/users', [UserController::class, 'store'])->name('add.user');
     Route::get('admin/users/{user}', [UserController::class, 'show'])->name('show.user');
+    Route::get('admin/users/{user}/update', [UserController::class, 'updateView'])->name('update.user.view');
     Route::patch('admin/users/{user}', [UserController::class, 'update'])->name('update.user');
     Route::patch('admin/users/{user}/deactivate', [UserController::class, 'deactivate'])->name('deactivate.user');
     Route::delete('admin/users/{user}', [UserController::class, 'destroy'])->name('destroy.user');
