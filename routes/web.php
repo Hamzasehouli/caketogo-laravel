@@ -59,6 +59,16 @@ Route::middleware('auth')->group(function () {
     Route::patch('/cakes/{cake}', [CakeController::class, 'update']);
     Route::delete('/cakes/{cake}', [CakeController::class, 'destroy']);
 
+    ///User
+
+    Route::get('admin/actives', [UserController::class, 'getActiveUsers'])->name('get.actives');
+    Route::get('admin/users', [UserController::class, 'getAllUsers'])->name('get.users');
+    Route::post('admin/users', [UserController::class, 'store'])->name('add.user');
+    Route::get('admin/users/{user}', [UserController::class, 'show'])->name('show.user');
+    Route::patch('admin/users/{user}', [UserController::class, 'update'])->name('update.user');
+    Route::patch('admin/users/{user}/deactivate', [UserController::class, 'deactivate'])->name('deactivate.user');
+    Route::delete('admin/users/{user}', [UserController::class, 'destroy'])->name('destroy.user');
+
 });
 
 ////////////Cakes

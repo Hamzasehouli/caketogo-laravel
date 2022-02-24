@@ -67,7 +67,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function updateDataView(Request $request, $id)
+    public function update(Request $request, $id)
     {
         if (!Gate::allows('updateDataView.user')) {
             abort(403);
@@ -75,30 +75,7 @@ class UserController extends Controller
         $user = User::where('id', $id);
         $user->update($request->only());
     }
-    public function updateData(Request $request, $id)
-    {
-        if (!Gate::allows('updateData.user')) {
-            abort(403);
-        }
-        $user = User::where('id', $id);
-        $user->update($request->only());
-    }
-    public function updatePassword(Request $request, $id)
-    {
-        if (!Gate::allows('updatePassword.user')) {
-            abort(403);
-        }
-        $user = User::where('id', $id);
-        $user->update($request->only());
-    }
-    public function updatePasswordView(Request $request, $id)
-    {
-        if (!Gate::allows('updatePasswordView.user')) {
-            abort(403);
-        }
-        $user = User::where('id', $id);
-        $user->update($request->only());
-    }
+   
 
     /**
      * Remove the specified resource from storage.
