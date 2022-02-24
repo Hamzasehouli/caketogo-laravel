@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cake;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class CakeController extends Controller
 {
@@ -25,8 +25,12 @@ class CakeController extends Controller
      */
     public function create(Request $request)
     {
-        if (Auth::user()->role !== 'admin') {
-            return redirect()->route('home')
+        // if (Auth::user()->role !== 'admin') {
+        //     return redirect()->route('home')
+        // }
+
+        if (!Gate::allows('add.cake')) {
+            abort(403);
         }
 
         $request->validate([
@@ -98,10 +102,14 @@ class CakeController extends Controller
 
     public function addCake()
     {
-        if (Auth::user()->role === 'admin') {
-            return view('cake.create');
-        } else {
-            return redirect()->route('home');
+        if (!Gate::allows('add.get')) {
+            abort(403);
         }
+        return view('cake.create');
+        // if (Auth::user()->role === 'admin') {
+        //     return view('cake.create');
+        // } else {
+        //     return redirect()->route('home');
+        // }
     }
 }

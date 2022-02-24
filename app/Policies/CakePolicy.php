@@ -17,9 +17,9 @@ class CakePolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function viewAny(User $user)
+    public function index(User $user)
     {
-        //
+        return $user->role === 'admin' ? Response::allow() : Response::deny('You are not allowed to perform this task');
     }
 
     /**
@@ -90,6 +90,6 @@ class CakePolicy
      */
     public function forceDelete(User $user, Cake $cake)
     {
-        //
+
     }
 }
