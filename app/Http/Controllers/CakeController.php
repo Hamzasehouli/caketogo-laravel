@@ -15,7 +15,8 @@ class CakeController extends Controller
      */
     public function index()
     {
-        //
+        $cakes = Cake::paginate(2);
+        return view('cake.getall')->with(['cakes' => $cakes]);
     }
 
     /**
@@ -112,7 +113,7 @@ class CakeController extends Controller
             'description' => 'string|max:255|min:20',
             'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-        $cake->update($request->all())
+        $cake->update($request->all());
         return back();
     }
 
