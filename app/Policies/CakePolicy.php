@@ -78,7 +78,7 @@ class CakePolicy
      */
     public function restore(User $user, Cake $cake)
     {
-        //
+        return $user->role === 'admin' ? Response::allow() : Response::deny('You are not allowed to perform this task');
     }
 
     /**
@@ -90,6 +90,6 @@ class CakePolicy
      */
     public function forceDelete(User $user, Cake $cake)
     {
-
+        return $user->role === 'admin' ? Response::allow() : Response::deny('You are not allowed to perform this task');
     }
 }

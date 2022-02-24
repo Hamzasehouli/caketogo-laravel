@@ -29,5 +29,8 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
         Gate::define('add.cake', [CakePolicy::class, 'create']);
         Gate::define('add.get', [CakePolicy::class, 'index']);
+        Gate::define('destroy.cake', [CakePolicy::class, 'delete']);
+        Gate::define('update.cake', [CakePolicy::class, 'update']);
+        Gate::define('edit.cake', [CakePolicy::class, 'edit']);
     }
 }

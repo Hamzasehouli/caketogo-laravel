@@ -52,7 +52,9 @@ class CakeController extends Controller
      */
     public function store()
     {
-
+        if (!Gate::allows('store.cake')) {
+            abort(403);
+        }
     }
 
     /**
@@ -74,7 +76,9 @@ class CakeController extends Controller
      */
     public function edit($id)
     {
-        //
+        if (!Gate::allows('edit.cake')) {
+            abort(403);
+        }
     }
 
     /**
@@ -86,7 +90,9 @@ class CakeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if (!Gate::allows('update.cake')) {
+            abort(403);
+        }
     }
 
     /**
@@ -97,7 +103,9 @@ class CakeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (!Gate::allows('destroy.cake')) {
+            abort(403);
+        }
     }
 
     public function addCake()
@@ -106,10 +114,5 @@ class CakeController extends Controller
             abort(403);
         }
         return view('cake.create');
-        // if (Auth::user()->role === 'admin') {
-        //     return view('cake.create');
-        // } else {
-        //     return redirect()->route('home');
-        // }
     }
 }
