@@ -40,7 +40,19 @@ class CakeController extends Controller
             'description' => 'required|string|max:255|min:20',
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-        Cake::create($request->only('title', 'price', 'weight', 'description', 'photo'));
+        function getImagePath(Int $num)
+        {
+            $chars = 'qwertzuioplkjhgfdsayxcvbnmQWERTZUIOPLKJHGFDSAYXCVBNM1234567890';
+            $imagePath = '';
+            for ($i = 0; $i < $num; $i++) {
+                $randomNum = rand(0, strlen($chars) - 1);
+                $imagePath .= $chars[$randomNum];
+            }
+            return $imagePath;
+        }
+        $imagePath = getImagePath(20) . '-' . time() . '.' . $request->photo->extension();
+        $request->photo->move('public_path', $imagePath);
+        Cake::create(['title' => $request->title, 'price' => $request->price, 'weight' => $request->weight, 'description' => $request->description, 'photo' => $imagePath]);
         return redirect()->route('home');
     }
 
