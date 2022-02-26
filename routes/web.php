@@ -28,12 +28,12 @@ Route::post('/register', [RegisterController::class, 'store']);
 //Login
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::post('/login', [LoginController::class, 'store'])->name('login');
+Route::post('/login', [LoginController::class, 'store']);
 
 //Forget password
 
 Route::get('/forget-password', [ForgetPasswordController::class, 'index'])->name('forget-password');
-Route::post('/forget-password', [ForgetPasswordController::class, 'store'])->name('forget-password');
+Route::post('/forget-password', [ForgetPasswordController::class, 'store']);
 Route::get('/reset-password/{token}', [ForgetPasswordController::class, 'sendLink'])->name('password.reset');
 Route::post('/reset-password', [ForgetPasswordController::class, 'updatePassword'])->name('password.update');
 
@@ -43,20 +43,24 @@ Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 Route::post('/update-data', [ProfileController::class, 'store'])->name('update.data');
 
 Route::get('/update-password', [UpdatePasswordController::class, 'index'])->name('update-password');
-Route::post('/update-password', [UpdatePasswordController::class, 'store'])->name('update-password');
+Route::post('/update-password', [UpdatePasswordController::class, 'store']);
 
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
 Route::middleware('auth')->group(function () {
+
+    ///Logout
+
     Route::delete('/logout', [LogoutController::class, 'destroy'])->name('logout');
 
     ///Cake
 
     Route::get('/admin/add-cake', [CakeController::class, 'addCake'])->name('add.cake');
     Route::post('/cakes', [CakeController::class, 'create']);
-    Route::patch('/cakes/{cake}', [CakeController::class, 'update']);
+    Route::get('/cakes/{cake}/update', [CakeController::class, 'updateCake'])->name('update.cake.view');
+    Route::patch('/cakes/{cake}', [CakeController::class, 'update'])->name('update.cake');
     Route::delete('/cakes/{cake}', [CakeController::class, 'destroy']);
 
     ///User

@@ -29,9 +29,9 @@ class CakePolicy
      * @param  \App\Models\Cake  $cake
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Cake $cake)
+    public function updateCake(User $user)
     {
-        //
+        return $user->role === 'admin' ? Response::allow() : Response::deny('You are not allowed to perform this task');
     }
 
     /**
@@ -52,7 +52,7 @@ class CakePolicy
      * @param  \App\Models\Cake  $cake
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Cake $cake)
+    public function update(User $user)
     {
         return $user->role === 'admin' ? Response::allow() : Response::deny('You are not allowed to perform this task');
     }

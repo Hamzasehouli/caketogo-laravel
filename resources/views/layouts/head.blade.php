@@ -14,7 +14,7 @@
               <a href="{{route('home')}}">Home</a>
           </li>
           <li class="pr-3 last:pr-0">
-              <a href="#">Cakes</a>
+              <a href="{{route('cakes')}}">Cakes</a>
           </li>
       </ul>
       <ul class="flex justify-between">

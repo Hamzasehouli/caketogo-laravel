@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cake;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Gate;
 
 class CakeController extends Controller
@@ -15,7 +16,7 @@ class CakeController extends Controller
      */
     public function index()
     {
-        $cakes = Cake::paginate(2);
+        $cakes = Cake::paginate(10);
         return view('cake.getall')->with(['cakes' => $cakes]);
     }
 
@@ -26,9 +27,6 @@ class CakeController extends Controller
      */
     public function create(Request $request)
     {
-        // if (Auth::user()->role !== 'admin') {
-        //     return redirect()->route('home')
-        // }
 
         if (!Gate::allows('add.cake')) {
             abort(403);
@@ -76,9 +74,9 @@ class CakeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($cake)
     {
-        //
+        return view('cake.show');
     }
 
     /**
@@ -87,7 +85,7 @@ class CakeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($cake)
     {
         if (!Gate::allows('edit.cake')) {
             abort(403);
@@ -106,15 +104,54 @@ class CakeController extends Controller
         if (!Gate::allows('update.cake')) {
             abort(403);
         }
-        $request->validate([
-            'title' => 'bail|string|max:255',
-            'price' => 'numeric',
-            'weight' => 'numeric',
-            'description' => 'string|max:255|min:20',
-            'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-        $cake->update($request->all());
+
+        $thecake = Cake::find($cake);
+        // $request->validate([
+        //     'title' => 'bail|string|max:255',
+        //     'price' => 'numeric',
+        //     'weight' => 'numeric',
+        //     'description' => 'string|max:255|min:20',
+        //     'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        // ]);
+        if ($request->filled('title')) {
+            $request->validate(['title' => 'bail|string|max:255']);
+            $thecake->title = $request->title;
+        }
+        if ($request->filled('price')) {
+            $request->validate(['price' => 'numeric']);
+            $thecake->price = $request->price;
+        }
+        if ($request->filled('weight')) {
+            $request->validate(['weight' => 'numeric']);
+            $thecake->weight = $request->weight;
+        }
+        if ($request->filled('description')) {
+            $request->validate(['description' => 'string|max:255|min:20']);
+            $thecake->description = $request->description;
+        }
+        if ($request->hasFile('photo')) {
+            $request->validate(['photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048']);
+            function getImagePath(Int $num)
+            {
+                $chars = 'qwertzuioplkjhgfdsayxcvbnmQWERTZUIOPLKJHGFDSAYXCVBNM1234567890';
+                $imagePath = '';
+                for ($i = 0; $i < $num; $i++) {
+                    $randomNum = rand(0, strlen($chars) - 1);
+                    $imagePath .= $chars[$randomNum];
+                }
+                return $imagePath;
+            }
+            $imagePath = getImagePath(20) . '-' . time() . '.' . $request->photo->extension();
+            $request->photo->move('public_path', $imagePath);
+            if (File::exists(public_path('public_path/' . $thecake->photo))) {
+
+                unlink(public_path('public_path/' . $thecake->photo));
+            }
+            $thecake->photo = $imagePath;
+        }
+        $thecake->save();
         return back();
+
     }
 
     /**
@@ -139,5 +176,13 @@ class CakeController extends Controller
             abort(403);
         }
         return view('cake.create');
+    }
+
+    public function updateCake($cake)
+    {
+        if (!Gate::allows('update.cake.view')) {
+            abort(403);
+        }
+        return view('cake.update')->with(['cake' => $cake]);
     }
 }
