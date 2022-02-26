@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\UpdatePasswordController;
 use App\Http\Controllers\CakeController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -67,7 +68,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('admin/actives', [UserController::class, 'getActiveUsers'])->name('get.actives');
     Route::get('admin/allusers', [UserController::class, 'getAllUsers'])->name('get.users');
-    Route::get('admin/users', [UserController::class, 'addUserView'])->name('add.user.view');
+    Route::get('admin/users', [UserController::class, 'addUserView'])->name('add.view');
     Route::post('admin/users', [UserController::class, 'store'])->name('add.user');
     Route::get('admin/users/{user}', [UserController::class, 'show'])->name('show.user');
     Route::get('admin/users/{user}/update', [UserController::class, 'updateView'])->name('update.user.view');

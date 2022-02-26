@@ -44,6 +44,10 @@ class UserPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
+    public function addUserView(User $user)
+    {
+        return $user->role === 'admin' ? Response::allow() : Response::deny('You are not allowed to perform this task');
+    }
     public function store(User $user)
     {
         return $user->role === 'admin' ? Response::allow() : Response::deny('You are not allowed to perform this task');

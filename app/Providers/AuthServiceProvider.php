@@ -45,6 +45,7 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('get.users', [UserPolicy::class, 'getAllUsers']);
         Gate::define('get.actives', [UserPolicy::class, 'getActives']);
+        Gate::define('add.view', [UserPolicy::class, 'addUserView']);
         Gate::define('add.user', [UserPolicy::class, 'store']);
         Gate::define('update.user.view', [UserPolicy::class, 'updateView']);
         Gate::define('update.user', [UserPolicy::class, 'update']);

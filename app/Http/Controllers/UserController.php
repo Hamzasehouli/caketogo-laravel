@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Htpp\Controllers\Auth\RegisterController;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Http\Support\Facades\Gate;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
@@ -20,7 +20,7 @@ class UserController extends Controller
             abort(403);
         }
 
-        $users = User::find();
+        $users = User::paginate(20);
     }
     public function getActiveUsers()
     {
@@ -28,7 +28,7 @@ class UserController extends Controller
             abort(403);
         }
 
-        $users = User::where('active', true)->all();
+        $users = User::where('active', true)->paginate(20);
     }
 
     /**
@@ -108,5 +108,12 @@ class UserController extends Controller
         }
         $user = User::where('id', $id);
         $user->update(['active' => false]);
+    }
+    public function addUserView()
+    {
+        if (!Gate::allows('add.view')) {
+            abort(403);
+        }
+        return view('user.add');
     }
 }
