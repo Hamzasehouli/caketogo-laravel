@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Htpp\Controllers\Auth\RegisterController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -21,6 +21,8 @@ class UserController extends Controller
         }
 
         $users = User::paginate(20);
+        return view('user.users')->with(['users' => $users]);
+
     }
     public function getActiveUsers()
     {
@@ -29,6 +31,7 @@ class UserController extends Controller
         }
 
         $users = User::where('active', true)->paginate(20);
+        return view('user.users')->with(['users' => $users]);
     }
 
     /**
@@ -43,7 +46,22 @@ class UserController extends Controller
             abort(403);
         }
 
-        [RegisterController::class, 'store'];
+        $validated = $request->validate([
+            'name' => ['bail', 'required', 'min:4', 'max:20'],
+            'email' => ['email', 'required', 'unique:users'],
+            'password' => ['confirmed', 'required', 'min:8', 'max:20'],
+        ]);
+
+        if (User::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'role' => $request['role'],
+            'password' => Hash::make($validated['password']),
+        ])) {
+            return redirect()->route('home');
+        } else {
+            return back()->with('status', 'Adding a user has been failed');
+        }
     }
 
     /**
@@ -57,7 +75,9 @@ class UserController extends Controller
         if (!Gate::allows('show.user')) {
             abort(403);
         }
-        $user = User::where('id', $id)->first();
+        $user = User::find($id);
+        return view('user.get')->with(['user' => $user, 'id' => $id]);
+
     }
 
     /**
@@ -74,13 +94,33 @@ class UserController extends Controller
         }
         return view('user.update');
     }
+
     public function update(Request $request, $id)
     {
         if (!Gate::allows('update.user')) {
             abort(403);
         }
-        $user = User::where('id', $id);
-        $user->update($request->only());
+        $user = User::find($id);
+
+        if ($request->filled('name')) {
+            $request->validate(['name' => ['bail', 'min:4', 'max:20']]);
+            $user->name = $request->name;
+        }
+        if ($request->filled('email')) {
+            $request->validate(['email' => ['email']]);
+            $user->email = $request->email;
+        }
+        if ($request->filled('role')) {
+            $request->validate(['role' => ['string']]);
+            $user->role = $request->role;
+        }
+        if ($request->filled('password')) {
+            $request->validate([
+                'password' => ['confirmed', 'min:8', 'max:20']]);
+            $user->password = Hash::make($request->password);
+        }
+        $user->save();
+        return back()->with('status', 'Data has been updated successfully');
     }
 
     /**
@@ -94,8 +134,9 @@ class UserController extends Controller
         if (!Gate::allows('destroy.user')) {
             abort(403);
         }
-        $user = User::where('id', $id);
+        $user = User::find($id);
         $user->delete();
+        return redirect()->route('home');
     }
 
     //////////////////////////////////////////
@@ -106,8 +147,9 @@ class UserController extends Controller
         if (!Gate::allows('deactivate.user')) {
             abort(403);
         }
-        $user = User::where('id', $id);
+        $user = User::find($id);
         $user->update(['active' => false]);
+        return redirect()->route('home');
     }
     public function addUserView()
     {

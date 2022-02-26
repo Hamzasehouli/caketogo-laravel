@@ -33,7 +33,7 @@ class UserPolicy
      * @param  \App\Models\User  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function show(User $user, User $model)
+    public function show(User $user)
     {
         return $user->role === 'admin' ? Response::allow() : Response::deny('You are not allowed to perform this task');
     }
@@ -60,11 +60,11 @@ class UserPolicy
      * @param  \App\Models\User  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function updateView(User $user, User $model)
+    public function updateView(User $user)
     {
         return $user->role === 'admin' ? Response::allow() : Response::deny('You are not allowed to perform this task');
     }
-    public function update(User $user, User $model)
+    public function update(User $user)
     {
         return $user->role === 'admin' ? Response::allow() : Response::deny('You are not allowed to perform this task');
     }
@@ -76,7 +76,7 @@ class UserPolicy
      * @param  \App\Models\User  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, User $model)
+    public function delete(User $user)
     {
         return $user->role === 'admin' ? Response::allow() : Response::deny('You are not allowed to perform this task');
     }
@@ -88,7 +88,7 @@ class UserPolicy
      * @param  \App\Models\User  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function deactivate(User $user, User $model)
+    public function deactivate(User $user)
     {
         return $user->role === 'admin' ? Response::allow() : Response::deny('You are not allowed to perform this task');
     }
