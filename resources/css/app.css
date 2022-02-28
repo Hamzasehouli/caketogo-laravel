@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.hero {
+    height: 80vh;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: top;
+    object-fit: cover;
+    margin: 5rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: white;
+    border-radius: 1rem;
+}
+
+.hero_sub {
+    margin-left: 4rem;
+}
+
+.hero_sub h1 {
+    font-size: 5rem;
+}
+
+.hero_sub h2 {
+    font-size: 2rem;
+}

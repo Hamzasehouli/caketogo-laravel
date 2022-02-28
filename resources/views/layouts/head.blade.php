@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-    <nav class="flex bg-pink-500 text-white px-14 py-4 justify-between">
+    <nav class="flex top-0 left-0 w-full shadow-lg fixed bg-pink-500 text-white px-14 py-4 justify-between">
       <ul class="flex justify-between">
           <li class="pr-3 last:pr-0">
               <a href="{{route('home')}}">Home</a>
