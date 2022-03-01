@@ -2,6 +2,9 @@
 
 @section('content')
 <x-base-section>
+  <x-form-component>
+
+  
 
   <div class="w-full max-w-xs">
     <form action="{{route('update.data')}}" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
@@ -44,5 +47,6 @@
    
   </form>
 </div> 
+</x-form-component>
 </x-base-section>
 @endsection

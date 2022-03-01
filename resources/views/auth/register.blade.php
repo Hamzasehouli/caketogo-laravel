@@ -2,8 +2,10 @@
 
 @section('content')
   <x-base-section >
-    <div class="w-full max-w-xs">
-      <form action="{{route('register')}}" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <x-form-component>
+
+      <div class="w-full max-w-xs">
+        <form action="{{route('register')}}" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
          @csrf
     <h1 class="mb-4 font-bold text-pink-500">Sign Up</h1>
     @if (session('status'))
@@ -53,7 +55,7 @@
           <p class="text-red-500 text-xs italic">{{$message}}</p>
       @enderror
     </div>
-      <div class="flex items-center justify-between">
+    <div class="flex items-center justify-between">
         <button class="bg-pink-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
          Sign Up
         </button>
@@ -63,5 +65,6 @@
       </div>
     </form>
   </div> 
+</x-form-component>
   </x-base-section >
 @endsection

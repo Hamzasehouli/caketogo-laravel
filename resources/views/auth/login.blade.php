@@ -2,9 +2,11 @@
 
 @section('content')
 <x-base-section>
+  <x-form-component>
 
-  <div class="w-full max-w-xs">
-    <form action="{{route('login')}}" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    
+    <div class="w-full max-w-xs">
+      <form action="{{route('login')}}" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
        @csrf
   <h1 class="mb-4 font-bold text-pink-500">Login</h1>
   @if (session('status'))
@@ -46,5 +48,6 @@
     </a>
   </form>
 </div> 
+</x-form-component>
 </x-base-section>
 @endsection
