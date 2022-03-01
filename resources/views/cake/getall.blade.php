@@ -1,7 +1,13 @@
 @extends('layouts.head')
 @section('content')
-    @foreach ($cakes as $item)
-        <p>{{$item}}</p>
+<x-base-section>
+    <div class="cakes_container">
+        @foreach ($cakes as $item)
+        <x-cake-component :item="$item"></x-cake-component>
         @endforeach
-        {{$cakes->links()}}
-@endsection
+    </div>
+</x-base-section>
+<div class="page_links">
+{{$cakes->links()}}
+</div>
+    @endsection

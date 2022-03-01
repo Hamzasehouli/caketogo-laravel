@@ -27,3 +27,43 @@
 .hero_sub h2 {
     font-size: 2rem;
 }
+
+.cake_cart {
+    width: 15rem;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 2px 2px 20px rgba(66, 66, 66, 0.281);
+    padding: 6px;
+}
+
+.cake_fig {
+    width: 100%;
+}
+
+.cake_img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.cake_title,
+.cake_price {
+    text-transform: capitalize;
+}
+
+.cake_title {
+    font-weight: 600;
+}
+
+.cakes_container {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    justify-items: center;
+    gap: 2rem 2rem;
+}
+
+.page_links {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}

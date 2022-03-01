@@ -1,4 +1,4 @@
-<footer id="footer" class="relative z-50 bg-blue-700">
+<footer id="footer" class="relative z-50 dark:bg-pink-700">
     <div tabindex="0" aria-label="footer" class="focus:outline-none border-t  border-gray-200 dark:border-gray-700 py-16">
         <div class="mx-auto container px-4 xl:px-12 2xl:px-4">
             <div class="lg:flex">
