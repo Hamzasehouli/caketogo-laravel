@@ -9,6 +9,7 @@
             You order, we deliver<br>
             We have cakes for all occasions
         </h2>
+        <x-button-flat :class="'mt-3'" :type="'button'">Discover</x-button-flat>
     </div>
 </section>
 <section class="section_how">
