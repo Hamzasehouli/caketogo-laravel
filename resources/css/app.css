@@ -13,7 +13,7 @@
     justify-content: flex-start;
     align-items: center;
     color: white;
-    border-radius: 1rem;
+    border-radius: 2px;
 }
 
 .hero_sub {
@@ -30,7 +30,7 @@
 
 .cake_cart {
     width: 15rem;
-    border-radius: 5px;
+    border-radius: 2px;
     overflow: hidden;
     box-shadow: 2px 2px 20px rgba(66, 66, 66, 0.281);
     padding: 6px;

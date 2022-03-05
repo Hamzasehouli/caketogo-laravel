@@ -1,4 +1,4 @@
-<nav class="flex top-0 left-0 w-full shadow-lg z-10 fixed bg-pink-500 text-white px-14 py-4 justify-between">
+<nav class="font-bold flex top-0 left-0 w-full shadow-lg z-10 fixed bg-yellow-400 text-gray-600 px-14 py-4 justify-between" >
     <ul class="flex justify-between">
         <li class="pr-3 last:pr-0">
             <a href="{{route('home')}}">Home</a>
@@ -22,7 +22,7 @@
             <form method="post" action="{{route('logout')}}">
               @csrf
               @method('DELETE')
-              <button type="submit" href="">Logout</button>    
+              <button class="font-bold" type="submit" href="">Logout</button>    
             </form>
         </li>
             

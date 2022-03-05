@@ -11,6 +11,7 @@
         </h2>
     </div>
 </section>
-<section>
+<section class="section_how">
+    
 </section>
 @endsection
