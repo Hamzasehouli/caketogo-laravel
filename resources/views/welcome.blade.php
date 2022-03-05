@@ -12,7 +12,14 @@
         <x-button-flat :class="'mt-3'" :type="'button'">Discover</x-button-flat>
     </div>
 </section>
-<section class="section_how">
-    
-</section>
+<x-base-section >
+    <div>
+        @foreach ($cakes as $item)
+        <x-cake-component :item="$item">
+            
+        </x-cake-component>
+            
+        @endforeach
+    </div>
+</x-base-section>
 @endsection

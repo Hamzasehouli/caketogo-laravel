@@ -18,6 +18,8 @@ class Cake extends Model
         'ingredients ',
         'weight',
         'photo',
+        'category',
+        'bestselling',
     ];
 
     public function comments()

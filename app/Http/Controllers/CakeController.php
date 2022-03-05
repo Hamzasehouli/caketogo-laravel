@@ -6,6 +6,7 @@ use App\Models\Cake;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\View;
 
 class CakeController extends Controller
 {
@@ -18,6 +19,11 @@ class CakeController extends Controller
     {
         $cakes = Cake::paginate(10);
         return view('cake.getall')->with(['cakes' => $cakes]);
+    }
+    public function getBestSelling()
+    {
+        $cakes = Cake::where('category', 'best-selling')->getall();
+        return $cakes;
     }
 
     /**

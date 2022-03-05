@@ -81,4 +81,5 @@ Route::middleware('auth')->group(function () {
 ////////////Cakes
 
 Route::get('/cakes', [CakeController::class, 'index'])->name('cakes');
+Route::get('/cakes/best-selling', [CakeController::class, 'getBestSelling'])->name('cakes.bestselling');
 Route::get('/cakes/{cake}', [CakeController::class, 'show']);
