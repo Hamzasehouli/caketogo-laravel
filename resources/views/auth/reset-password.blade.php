@@ -1,7 +1,7 @@
 @extends('layouts.head')
 
 @section('content')
-<x-base-section>
+<x-base-section :id="'reset-password'">
   <x-form-component>
 
     

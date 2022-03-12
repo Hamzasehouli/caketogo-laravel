@@ -5,18 +5,18 @@
                 <div class="w-full lg:w-1/2 mb-16 lg:mb-0 flex">
                     <div class="w-full lg:w-1/2 px-6">
                         <ul>
-                            <li><a class="focus:outline-none focus:underline text-xs lg:text-sm leading-none hover:text-brand dark:hover:text-brand " href="javascript:void(0)">Components</a></li>
-                            <li class="mt-6"><a class="focus:outline-none focus:underline text-xs lg:text-sm leading-none hover:text-brand dark:hover:text-brand  " href="javascript:void(0)">Templates</a></li>
-                            <li class="mt-6"><a class="focus:outline-none focus:underline text-xs lg:text-sm leading-none hover:text-brand dark:hover:text-brand  " href="javascript:void(0)">Pricing</a></li>
+                            <li><a class="focus:outline-none focus:underline text-xs lg:text-sm leading-none hover:text-brand dark:hover:text-brand " href="javascript:void(0)">News</a></li>
+                            <li class="mt-6"><a class="focus:outline-none focus:underline text-xs lg:text-sm leading-none hover:text-brand dark:hover:text-brand  " href="javascript:void(0)">About</a></li>
+                            <li class="mt-6"><a class="focus:outline-none focus:underline text-xs lg:text-sm leading-none hover:text-brand dark:hover:text-brand  " href="javascript:void(0)">Stories</a></li>
                             <li class="mt-6"><a class="focus:outline-none focus:underline text-xs lg:text-sm leading-none hover:text-brand dark:hover:text-brand  " href="javascript:void(0)">FAQ</a></li>
-                            <li class="mt-6"><a href="javascript:void(0)" class="focus:outline-none focus:underline text-xs lg:text-sm leading-none hover:text-brand dark:hover:text-brand  ">Documentation</a></li>
+                            <li class="mt-6"><a href="javascript:void(0)" class="focus:outline-none focus:underline text-xs lg:text-sm leading-none hover:text-brand dark:hover:text-brand  ">History</a></li>
                         </ul>
                     </div>
                     <div class="w-full lg:w-1/2 px-6">
                         <ul>
-                            <li><a class="focus:outline-none focus:underline text-xs lg:text-sm leading-none hover:text-brand dark:hover:text-brand  " href="javascript:void(0)">Free components</a></li>
+                            <li><a class="focus:outline-none focus:underline text-xs lg:text-sm leading-none hover:text-brand dark:hover:text-brand  " href="javascript:void(0)">Contact</a></li>
                             <li class="mt-6"><a class="focus:outline-none focus:underline text-xs lg:text-sm leading-none hover:text-brand dark:hover:text-brand  " href="javascript:void(0)">Blog</a></li>
-                            <li class="mt-6"><a class="focus:outline-none focus:underline text-xs lg:text-sm leading-none hover:text-brand dark:hover:text-brand  " href="javascript:void(0)">Changelog</a></li>
+                            <li class="mt-6"><a class="focus:outline-none focus:underline text-xs lg:text-sm leading-none hover:text-brand dark:hover:text-brand  " href="javascript:void(0)">Gallery</a></li>
                         </ul>
                     </div>
                 </div>

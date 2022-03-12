@@ -1,7 +1,7 @@
 @extends('layouts.head')
 
 @section('content')
-<x-base-section>
+<x-base-section :id="'create-cake'">
 <x-form-component>
 
   <div class="w-full max-w-xs">
@@ -41,6 +41,33 @@
       border-red-500
       @enderror shadow appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline" name="weight" id="weight" type="number" placeholder="weight">
       @error('price')
+      <p class="text-red-500 text-xs italic">{{$message}}</p>
+      @enderror
+    </div>
+    <div class="mb-4">
+      <label class="block  text-sm font-bold mb-2" for="category">
+        Category
+      </label>
+      <select value="{{old('category')}}" class="@error('category')
+      border-red-500
+      @enderror shadow appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline" name="category" id="category" >
+  <option selected disabled>
+      Select category
+  </option>
+  <option>
+      Cheesecake
+  </option>
+  <option>
+      Cupcake
+  </option>
+  <option>
+      Eagless Cake
+  </option>
+  <option>
+      Ice cream Cake
+  </option>
+  </select>
+      @error('email')
       <p class="text-red-500 text-xs italic">{{$message}}</p>
       @enderror
     </div>

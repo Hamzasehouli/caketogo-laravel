@@ -57,8 +57,8 @@ class CakeController extends Controller
         }
         $imagePath = getImagePath(20) . '-' . time() . '.' . $request->photo->extension();
         $request->photo->move('public_path', $imagePath);
-        Cake::create(['title' => $request->title, 'price' => $request->price, 'weight' => $request->weight, 'description' => $request->description, 'photo' => $imagePath]);
-        return redirect()->route('home');
+        Cake::create(['title' => $request->title, 'catgory' => $request->category, 'price' => $request->price, 'weight' => $request->weight, 'description' => $request->description, 'photo' => $imagePath]);
+        return back()->with('status', 'Cakes has been added successfully');
     }
 
     /**

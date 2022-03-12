@@ -1,6 +1,6 @@
 @extends('layouts.head')
 @section('content')
-<x-base-section>
+<x-base-section :id="'get-cakes'">
     <div class="cakes_container">
         @foreach ($cakes as $item)
         <x-cake-component :item="$item"></x-cake-component>

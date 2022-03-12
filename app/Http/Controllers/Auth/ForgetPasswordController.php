@@ -1,4 +1,5 @@
 <?php
+declare (strict_types = 1);
 
 namespace App\Http\Controllers\Auth;
 
@@ -17,13 +18,12 @@ class ForgetPasswordController extends Controller
         $this->middleware('guest');
     }
 
-    public function index()
+    public function index(): mixed
     {
-
         return view('auth.forgetpassword');
     }
 
-    public function store(Request $request)
+    public function store(Request $request):mixed
     {
         $request->validate(['email' => 'required|email']);
 

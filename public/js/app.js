@@ -2164,6 +2164,15 @@ module.exports = {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+document.getElementById("discover").addEventListener("click", function () {
+  var _document, _document2;
+
+  console.log((_document = document) === null || _document === void 0 ? void 0 : _document.getElementById("occasions"));
+  (_document2 = document) === null || _document2 === void 0 ? void 0 : _document2.getElementById("occasions").scrollIntoView({
+    behavior: "smooth"
+  });
+});
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

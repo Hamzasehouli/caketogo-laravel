@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $cakes = Cake::where('category', 'best-selling');
+        $cakes = Cake::get();
         View::share('cakes', $cakes);
     }
 }

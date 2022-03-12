@@ -1,7 +1,7 @@
 @extends('layouts.head')
 
 @section('content')
-<x-base-section>
+<x-base-section :id="'forget-password'">
 <x-form-component>
 
   <div class="w-full max-w-xs">

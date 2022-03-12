@@ -3,9 +3,11 @@
 <div class="cake_cart ">
         <a href="#">
         <figure class="cake_fig">
-            <img class="cake_img" src="https://i1.fnp.com/images/pr/m/v20190802125813/cream-drop-chocolate-cake.jpg">
+            <img class="cake_img" src="{{asset('public_path/' . $item->photo)}}">
         </figure>
-        <p class="cake_title">{{$item->title}}</p>
-        <p class="cake_price">{{$item->price}}</p>
+        <div class="p-2">
+            <p class="cake_title">{{$item->title}}</p>
+            <p class="cake_price"><span class="font-bold">MAD</span> {{$item->price}}</p>
         </a>
+    </div>
 </div>
