@@ -1,7 +1,7 @@
 @props(['title','img'])
 
 <div class="cake_cart ">
-        <a href="#">
+        <a href="{{route('cakes',['category'=>strtolower($title)])}}">
         <figure class="cake_fig">
             <img class="cake_img" src="{{asset('images/' . $img)}}">
         </figure>

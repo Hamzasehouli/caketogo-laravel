@@ -15,11 +15,12 @@ class CakeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(?string $category = null)
     {
-        $cakes = Cake::paginate(10);
+        $cakes = isset($category) ? Cake::where('category', $category)->paginate(5) : Cake::paginate(10);
         return view('cake.getall')->with(['cakes' => $cakes]);
     }
+
     public function getBestSelling()
     {
         $cakes = Cake::where('category', 'best-selling')->getall();
