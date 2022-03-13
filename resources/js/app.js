@@ -35,6 +35,7 @@ document?.getElementById("add-to-cart")?.addEventListener("click", (e) => {
     // if (isCakesContainesThisCake) return;
     cakes.push(cake);
     localStorage.setItem("cakes", JSON.stringify(cakes));
+    location.reload();
 });
 
 function decrement(e) {

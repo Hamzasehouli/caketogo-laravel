@@ -16,7 +16,7 @@
             <a href="{{route('profile')}}">Profile</a>
         </li>
         <li class="pr-3 last:pr-0">
-            <a href="{{route('cart')}}">Cart</a>
+            <a href="{{route('cart')}}"><span class="count relative"><script>document.querySelector('.count').insertAdjacentHTML('afterbegin',`<span class=" text-xs absolute bottom-4 right-0">${JSON.parse(localStorage.getItem('cakes')).length}</span>`)</script>Cart</a>
         </li>
         <li class="pr-3 last:pr-0">
             <form method="post" action="{{route('logout')}}">

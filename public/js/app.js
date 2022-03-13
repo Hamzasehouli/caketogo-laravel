@@ -49,6 +49,7 @@ var quantity = 1;
 
   cakes.push(cake);
   localStorage.setItem("cakes", JSON.stringify(cakes));
+  location.reload();
 });
 
 function decrement(e) {
