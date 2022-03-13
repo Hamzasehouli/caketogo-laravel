@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <script defer src="/js/app.js"></script>
-    <title>Document</title>
+    <title>Caketogo | {{$title}}</title>
 </head>
 <body class="text-gray-600">
 

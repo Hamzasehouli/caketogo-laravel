@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\UpdatePasswordController;
 use App\Http\Controllers\CakeController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -47,7 +48,7 @@ Route::get('/update-password', [UpdatePasswordController::class, 'index'])->name
 Route::post('/update-password', [UpdatePasswordController::class, 'store']);
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome')->with(['title' => 'Home']);
 })->name('home');
 
 Route::middleware('auth')->group(function () {
@@ -83,3 +84,4 @@ Route::middleware('auth')->group(function () {
 Route::get('/cakes/occasion/{category?}', [CakeController::class, 'index'])->name('cakes');
 Route::get('/cakes/best-selling', [CakeController::class, 'getBestSelling'])->name('cakes.bestselling');
 Route::get('/cakes/{cake}', [CakeController::class, 'show'])->name('show.cake');
+Route::get('/cart', [CartController::class, 'index'])->name('cart');

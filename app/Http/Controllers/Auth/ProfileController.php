@@ -14,7 +14,7 @@ class ProfileController extends Controller
     }
 
     public function index()
-    {return view('auth.profile');}
+    {return view('auth.profile')->with(['title' => Auth::user()->name . ' profile']);}
 
     public function store(Request $request)
     {

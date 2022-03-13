@@ -17,7 +17,7 @@ class UpdatePasswordController extends Controller
 
     public function index()
     {
-        return view('auth.update-password');
+        return view('auth.update-password')->with(['title' => 'Update password']);
     }
 
     public function store(Request $request)

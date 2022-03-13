@@ -16,7 +16,7 @@
             <a href="{{route('profile')}}">Profile</a>
         </li>
         <li class="pr-3 last:pr-0">
-            <a href="#">Cart</a>
+            <a href="{{route('cart')}}">Cart</a>
         </li>
         <li class="pr-3 last:pr-0">
             <form method="post" action="{{route('logout')}}">

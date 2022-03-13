@@ -20,10 +20,10 @@ class ForgetPasswordController extends Controller
 
     public function index(): mixed
     {
-        return view('auth.forgetpassword');
+        return view('auth.forgetpassword')->with(['title' => 'Forget password']);
     }
 
-    public function store(Request $request):mixed
+    public function store(Request $request): mixed
     {
         $request->validate(['email' => 'required|email']);
 
@@ -38,7 +38,7 @@ class ForgetPasswordController extends Controller
 
     public function sendLink($token)
     {
-        return view('auth.reset-password', ['token' => $token]);
+        return view('auth.reset-password', ['token' => $token])->with(['title' => 'Reset password']);
     }
 
     public function updatePassword(Request $request)

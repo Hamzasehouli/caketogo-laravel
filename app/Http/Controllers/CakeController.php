@@ -18,7 +18,7 @@ class CakeController extends Controller
     public function index(?string $category = null)
     {
         $cakes = isset($category) ? Cake::where('category', $category)->paginate(5) : Cake::paginate(10);
-        return view('cake.getall')->with(['cakes' => $cakes]);
+        return view('cake.getall')->with(['cakes' => $cakes, 'title' => 'Cakes']);
     }
 
     public function getBestSelling()
@@ -83,7 +83,7 @@ class CakeController extends Controller
      */
     public function show(?Cake $cake)
     {
-        return view('cake.show')->with('cake', $cake);
+        return view('cake.show')->with(['cake' => $cake, 'title' => $cake->title]);
     }
 
     /**
@@ -182,7 +182,7 @@ class CakeController extends Controller
         if (!Gate::allows('add.get')) {
             abort(403);
         }
-        return view('cake.create');
+        return view('cake.create')->with(['title' => 'Add cake']);
     }
 
     public function updateCake($cake)
@@ -190,6 +190,6 @@ class CakeController extends Controller
         if (!Gate::allows('update.cake.view')) {
             abort(403);
         }
-        return view('cake.update')->with(['cake' => $cake]);
+        return view('cake.update')->with(['cake' => $cake, 'title' => 'Update cake']);
     }
 }
