@@ -1,4 +1,4 @@
-@props(['type','class','id'])
-<button id="{{$id}}" class="{{$class}} bg-yellow-400 hover:bg-black text-gray-600 hover:text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="{{$type}}">
+@props(['data'=>'','type','class','id', 'caketitle'=>'','cakeid'=>'','cakecategory'=>'','cakephoto'=>'','cakeprice'=>'','cakeweight'=>'','cakedescription'=>''])
+<button data-cake="{{$data}}" data-caketitle="{{$caketitle}}" data-cakephoto="{{$cakephoto}}" data-cakeid="{{$cakeid}}" data-cakedescription="{{$cakedescription}}" data-cakeweight="{{$cakeweight}}" data-cakeprice="{{$cakeprice}}" data-cakecategory="{{$cakecategory}}" id="{{$id}}" class="{{$class}} bg-yellow-400 hover:bg-black text-gray-600 hover:text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="{{$type}}">
 {{$slot}}
 </button>

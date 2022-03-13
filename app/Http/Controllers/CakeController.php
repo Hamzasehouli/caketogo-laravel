@@ -81,9 +81,9 @@ class CakeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($cake)
+    public function show(?Cake $cake)
     {
-        return view('cake.show');
+        return view('cake.show')->with('cake', $cake);
     }
 
     /**

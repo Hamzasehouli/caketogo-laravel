@@ -2162,15 +2162,37 @@ module.exports = {
   \*****************************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
+var _document$getElementB, _document3, _document3$getElement;
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-document.getElementById("discover").addEventListener("click", function () {
+(_document$getElementB = document.getElementById("discover")) === null || _document$getElementB === void 0 ? void 0 : _document$getElementB.addEventListener("click", function () {
   var _document, _document2;
 
   console.log((_document = document) === null || _document === void 0 ? void 0 : _document.getElementById("occasions"));
   (_document2 = document) === null || _document2 === void 0 ? void 0 : _document2.getElementById("occasions").scrollIntoView({
     behavior: "smooth"
   });
+});
+(_document3 = document) === null || _document3 === void 0 ? void 0 : (_document3$getElement = _document3.getElementById("add-to-cart")) === null || _document3$getElement === void 0 ? void 0 : _document3$getElement.addEventListener("click", function (e) {
+  var _e$target$dataset = e.target.dataset,
+      caketitle = _e$target$dataset.caketitle,
+      cakeid = _e$target$dataset.cakeid,
+      cakephoto = _e$target$dataset.cakephoto,
+      cakedescription = _e$target$dataset.cakedescription,
+      cakeprice = _e$target$dataset.cakeprice,
+      cakeweight = _e$target$dataset.cakeweight,
+      cakecategory = _e$target$dataset.cakecategory;
+  var cake = {
+    id: cakeid,
+    title: caketitle,
+    photo: cakephoto,
+    description: cakedescription,
+    category: cakecategory,
+    weight: cakeweight,
+    price: cakeprice
+  };
+  localStorage.setItem("cake", JSON.stringify(cake));
 });
 
 /***/ }),
